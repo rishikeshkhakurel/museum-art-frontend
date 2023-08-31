@@ -1,16 +1,13 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import Artists from "./pages/artists/view";
-import ArtWorks from "./pages/art-works/view";
+import GlobalStyle from "./config/style/global-style";
+import CustomRoutes from "./pages/routes";
 
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/artist" element={<Artists/>} />
-        <Route path="/artwork" element={<ArtWorks/>} />
-        <Route path="*" element={<Navigate to="/artist"/>}/>
-      </Routes>
+      <GlobalStyle />
+      <CustomRoutes />
+      
     </>
   );
 }
