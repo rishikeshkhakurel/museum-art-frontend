@@ -4,7 +4,7 @@ import { BodyHeader } from '../../art-works/view'
 const Artists = () => {
   return (
     <>
-      <BodyHeader title="Artists" />
+      <BodyHeader title="Artists" buttonName='Add Artists' buttonLink="/artists/add" />
     </>
   )
 }

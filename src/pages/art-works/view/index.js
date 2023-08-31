@@ -3,6 +3,7 @@ import ArtWorkStyle, { BodyHeaderStyle } from './art-work-style'
 import Search from '../../../component/search';
 import { Link } from 'react-router-dom';
 import Button from '../../../component/button';
+import CustomTable from '../../../component/table';
 
 
 export const BodyHeader = (props) => {
@@ -32,7 +33,8 @@ export const BodyHeader = (props) => {
 const ArtWorks = () => {
   return (
     <ArtWorkStyle>
-      <BodyHeader title="Art Works" buttonName='Add ArtWork' buttonLink="/adduser" />
+      <BodyHeader title="Art Works" buttonName='Add ArtWork' buttonLink="/artwork/add" />
+      <CustomTable />
     </ArtWorkStyle>
   )
 }
