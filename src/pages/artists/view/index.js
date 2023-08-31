@@ -1,8 +1,11 @@
 import React from 'react'
+import { BodyHeader } from '../../art-works/view'
 
 const Artists = () => {
   return (
-    <div>Artists</div>
+    <>
+      <BodyHeader title="Artists" />
+    </>
   )
 }
 
