@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Button from './button';
+import Button from '../../../component/button';
 
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
@@ -62,7 +62,7 @@ const rows = [
     createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-export default function CustomTable() {
+export default function ArtWorkTable() {
     const [page, setPage] = React.useState(0);
     const [maxPage, setMaxPage]= React.useState(0);
     const rowsPerPage = 100;
