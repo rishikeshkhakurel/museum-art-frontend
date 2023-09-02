@@ -1,4 +1,4 @@
-import GlobalStyle from "./config/style/global-style";
+import GlobalStyle from "./common/style/global-style";
 import CustomRoutes from "./pages/routes";
 
 
