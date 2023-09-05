@@ -1,13 +1,16 @@
+import { Provider } from "react-redux";
 import GlobalStyle from "./common/style/global-style";
 import CustomRoutes from "./pages/routes";
+import store from "./redux";
 
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <CustomRoutes />
-      
+      <Provider store={store}>
+        <GlobalStyle />
+        <CustomRoutes />
+      </Provider>
     </>
   );
 }

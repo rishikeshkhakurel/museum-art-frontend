@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ArtWorkStyle, { BodyHeaderStyle } from './art-work-style'
 import Search from '../../../component/search';
 import { Link } from 'react-router-dom';
@@ -7,10 +7,9 @@ import ArtWorkTable from './art-work-table';
 
 
 export const BodyHeader = (props) => {
-  const [search, setSearch] = useState('');
 
   const handleSearch = (event) => {
-    setSearch(event.target.value);
+    props?.setSearch(event.target.value);
   };
   return (
     <BodyHeaderStyle>
@@ -19,7 +18,7 @@ export const BodyHeader = (props) => {
       </h1>
       <div className="search-link-container">
         <div>
-          <Search value={search} onChange={handleSearch} />
+          <Search value={props?.search} onChange={handleSearch} />
         </div>
         <div>
           <Link to={props?.buttonLink}><Button color="primary">{props?.buttonName}</Button></Link>
