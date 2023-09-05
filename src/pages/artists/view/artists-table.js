@@ -20,42 +20,36 @@ const columns = [
         label: 'Display Name',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'ArtistBio',
         label: 'Artist Bio',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'Nationality',
         label: 'Nationality',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toFixed(2),
     },
     {
         id: 'Gender',
         label: 'Gender',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toFixed(2),
     },
     {
         id: 'BeginDate',
-        label: 'BeginDate',
+        label: 'Begin Date',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toFixed(2),
     },
     {
         id: 'EndDate',
-        label: 'EndDate',
+        label: 'End Date',
         minWidth: 170,
         align: 'right',
-        format: (value) => value.toFixed(2),
     },
 ];
 
@@ -127,8 +121,8 @@ export default function ArtistTable({ search }) {
 
     return (
         <>
+            <Paper sx={{ position: 'relative',width: '100%', overflow: 'hidden', m: "16px 0" }}>
             <Loading />
-            <Paper sx={{ width: '100%', overflow: 'hidden', m: "16px 0" }}>
                 <TableContainer sx={{ maxHeight: 600, minHeight: 600 }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>

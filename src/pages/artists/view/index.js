@@ -8,7 +8,7 @@ const Artists = () => {
   
   return (
     <>
-      <BodyHeader title="Artists" buttonName='Add Artists' buttonLink="/artists/add" search={search} setSearch={setSearch} />
+      <BodyHeader title="Artists" buttonName='Add Artists' buttonLink="/artist/add" search={search} setSearch={setSearch} />
       <ArtistTable search={search} />
     </>
   )

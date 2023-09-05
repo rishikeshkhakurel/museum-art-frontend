@@ -7,8 +7,8 @@ const LoadingStyle = styled.div`
     z-index: 99;
     position: absolute;
     background-color: #fff;
-    height: 600px;
-    width: 100%;
+    height: 95%;
+    width: 95%;
     opacity: 0.6;
   .loading{
     display:flex;

@@ -25,8 +25,18 @@ export const ArtistApis = createApi({
         },
       }),
     }),
+    addArtist: builder.mutation({
+      query: (value) => ({
+        url: `/artist/add`,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: value,
+      }),
+    }),
 
   }),
 });
 
-export const { useGetArtistMutation, useSearchArtistMutation } = ArtistApis;
+export const { useGetArtistMutation, useSearchArtistMutation, useAddArtistMutation } = ArtistApis;

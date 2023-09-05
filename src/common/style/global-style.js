@@ -141,6 +141,9 @@ const GlobalStyle = createGlobalStyle`
     background: #555;
   }
   
+  .success-message{
+    color:var(--geen-600);
+  }
 `;
 
 export default GlobalStyle;
