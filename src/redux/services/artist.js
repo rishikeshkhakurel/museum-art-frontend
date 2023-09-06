@@ -6,7 +6,7 @@ export const ArtistApis = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: httpConfig.BASE_URL,
   }),
-  tagTypes: ["add-artist", "edit-artist", "delete-artist"],
+  tagTypes: ["edit-artist","delete-artist","add-artist"],
   endpoints: (builder) => ({
     getArtist: builder.query({
       query: (page) => ({
@@ -16,7 +16,16 @@ export const ArtistApis = createApi({
           'Content-Type': 'application/json',
         },
       }),
-      providesTags: ["artist"],
+      providesTags: ["edit-artist","delete-artist","add-artist"],
+    }),
+    getArtistbyId: builder.query({
+      query: (id) => ({
+        url: `/artist/${id}`,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
     }),
     searchArtist: builder.mutation({
       query: ({ search, page }) => ({
@@ -36,7 +45,7 @@ export const ArtistApis = createApi({
         },
         body: value,
       }),
-      invalidatesTags: ["artist"],
+      invalidatesTags: ["add-artist"],
     }),
     deleteArtist: builder.mutation({
       query: (id) => ({
@@ -46,7 +55,7 @@ export const ArtistApis = createApi({
           'Content-Type': 'application/json',
         },
       }),
-      invalidatesTags: ["artist"],
+      invalidatesTags: ["delete-artist"],
     }),
     editArtist: builder.mutation({
       query: (value) => ({
@@ -57,10 +66,16 @@ export const ArtistApis = createApi({
         },
         body: value,
       }),
-      invalidatesTags: ["artist"],
+      invalidatesTags: ["edit-artist"],
     }),
-
   }),
 });
 
-export const { useGetArtistQuery, useSearchArtistMutation, useAddArtistMutation, useDeleteArtistMutation, useEditArtistMutation } = ArtistApis;
+export const {
+  useGetArtistQuery,
+  useSearchArtistMutation,
+  useAddArtistMutation,
+  useDeleteArtistMutation,
+  useEditArtistMutation,
+  useGetArtistbyIdQuery
+} = ArtistApis;

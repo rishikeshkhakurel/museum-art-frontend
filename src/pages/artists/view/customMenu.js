@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { changingLoadingStatus } from '../../../redux/slices/loading';
 import AlertBox from '../../../component/alert-box';
 import ConfirmBox from '../../../component/confirm-box';
+import { useNavigate } from 'react-router-dom';
 
 function CustomMenu({ id }) {
     const dispatch = useDispatch();
@@ -38,6 +39,21 @@ function CustomMenu({ id }) {
             dispatch(changingLoadingStatus(true));
         }
     }, [deleteArtistRes])
+
+    //edit artist
+    const navigate = useNavigate();
+    const [editArtist, setEditArtist] = useState(false);
+    const onEditArtist = (id) => {
+        setEditArtist(id);
+        handleClose();
+    }
+
+    const onConfirmEditArtist = () => {
+        navigate(`/artist/edit/${editArtist}`)
+        setEditArtist(false);
+    }
+
+
     return (
         <>
             {deleteArtistRes?.isSuccess && <AlertBox AlertMessage="Artist Deleted Successfully" />}
@@ -45,9 +61,15 @@ function CustomMenu({ id }) {
             <ConfirmBox
                 title="Are you sure, you want to Delete Artist"
                 open={deleteArtist}
-                dailogHandeller={() => setDeleteArtist(null)}
+                dailogHandeller={() => setDeleteArtist(false)}
                 onConform={onConfirmDeleteArtist}
                 error
+            />
+            <ConfirmBox
+                title="Are you sure, you want to Edit Artist"
+                open={editArtist}
+                dailogHandeller={() => setEditArtist(false)}
+                onConform={onConfirmEditArtist}
             />
             <BsThreeDotsVertical onClick={handleClick} style={{ padding: 4 }} />
             <Menu
@@ -56,7 +78,7 @@ function CustomMenu({ id }) {
                 onClose={handleClose}
             >
 
-                <MenuItem onClick={handleClose}>Edit</MenuItem>
+                <MenuItem onClick={() => onEditArtist(id)}>Edit</MenuItem>
                 <MenuItem onClick={() => onDeleteArtist(id)}>Delete</MenuItem>
             </Menu>
         </>

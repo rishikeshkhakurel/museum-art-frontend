@@ -33,14 +33,16 @@ height: 100%;
 `
 
 function AddArtist() {
-    const { formik, addArtistRes } = useAddArtist();
+    const { formik, addArtistRes, edit, editArtistRes } = useAddArtist();
+    
     return (
         <AddArtistStyled>
             {addArtistRes?.isSuccess && <AlertBox AlertMessage="Artist Added Successfully" />}
-            {addArtistRes?.isError && <AlertBox isError AlertMessage="Something Went Wrong" />}
-            <h1>Add Artist</h1>
+            {(addArtistRes?.isError || editArtistRes) && <AlertBox isError AlertMessage="Something Went Wrong" />}
+            {editArtistRes?.isSuccess && <AlertBox AlertMessage="Artist Edited Successfully" />}
+            <h1>{edit ? 'Edit' : 'Add'} Artist</h1>
             <div id='add-artist'>
-            <Loading />
+                <Loading />
                 <form onSubmit={formik.handleSubmit}>
                     <Input
                         placeholder="Robert Arneson	"
@@ -75,7 +77,7 @@ function AddArtist() {
                         options={['Male', 'Female', 'Other']}
                         onChange={(selectedValue) => {
                             formik.handleChange('gender')(selectedValue);
-                          }}
+                        }}
                         onBlur={formik.handleBlur}
                         error={formik.touched.gender && formik.errors.gender} />
                     <Input
@@ -90,16 +92,16 @@ function AddArtist() {
                     <Input
                         placeholder="1992"
                         name="End Year"
-                        id="enddate"
-                        value={formik.values.enddate}
+                        id="endDate"
+                        value={formik.values.endDate}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        error={formik.touched.enddate && formik.errors.enddate}
+                        error={formik.touched.endDate && formik.errors.endDate}
                     />
 
                     <div>
                         <Button color='primary' type='submit'>
-                            Add Artist
+                            {edit ? 'Edit' : 'Add'} Artist
                         </Button>
                     </div>
                 </form>

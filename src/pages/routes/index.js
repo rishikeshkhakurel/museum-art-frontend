@@ -12,6 +12,7 @@ const CustomRoutes = () => {
             <Route element={<DashboardWrapper />} >
                 <Route path="/artist" element={<Artists />} />
                 <Route path="/artist/add" element={<AddArtist />} />
+                <Route path="/artist/edit/:artistId" element={<AddArtist />} />
                 <Route path="/artwork" element={<ArtWorks />} />
                 <Route path="/artwork/add" element={<AddArtWork />} />
                 <Route path="*" element={<Navigate to="/artist" />} />
