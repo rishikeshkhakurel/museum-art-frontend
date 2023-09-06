@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ArtWorkStyle, { BodyHeaderStyle } from './art-work-style'
 import Search from '../../../component/search';
 import { Link } from 'react-router-dom';
@@ -30,10 +30,11 @@ export const BodyHeader = (props) => {
 }
 
 const ArtWorks = () => {
+  const [search, setSearch] = useState('');
   return (
     <ArtWorkStyle>
-      <BodyHeader title="Art Works" buttonName='Add ArtWork' buttonLink="/artwork/add" />
-      <ArtWorkTable />
+      <BodyHeader title="Art Works" buttonName='Add ArtWork' buttonLink="/artwork/add" search={search} setSearch={setSearch} />
+      <ArtWorkTable search={search} />
     </ArtWorkStyle>
   )
 }

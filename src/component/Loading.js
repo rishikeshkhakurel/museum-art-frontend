@@ -19,6 +19,7 @@ const LoadingStyle = styled.div`
 `
 function Loading() {
   const loading = useSelector((state) => state.loading.loadingStatus)
+  console.log(loading)
   if (loading) {
     return (
       <LoadingStyle>
