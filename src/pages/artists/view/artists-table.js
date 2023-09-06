@@ -6,12 +6,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { BsThreeDotsVertical } from "react-icons/bs";
 import Button from '../../../component/button';
-import { useGetArtistMutation, useSearchArtistMutation } from '../../../redux/services/artist';
+import { useGetArtistQuery, useSearchArtistMutation } from '../../../redux/services/artist';
 import { useDispatch } from 'react-redux';
 import { changingLoadingStatus } from '../../../redux/slices/loading';
 import Loading from '../../../component/Loading';
+import CustomMenu from './customMenu';
 
 const columns = [
     { id: 'ConstituentID', label: 'Constituent ID', minWidth: 170 },
@@ -58,7 +58,7 @@ export default function ArtistTable({ search }) {
     const [searchArtistList, setSearchArtistList] = useState([])
     const [page, setPage] = useState(1);
     const dispatch = useDispatch()
-    const [getArtistReq, getArtistRes] = useGetArtistMutation();
+    const getArtistRes = useGetArtistQuery(page);
     const [searchArtistReq, searchArtistRes] = useSearchArtistMutation();
 
     const chooseArtistData = () => {
@@ -68,12 +68,13 @@ export default function ArtistTable({ search }) {
             return (artist)
         }
     }
+    //get artist
     useEffect(() => {
         if (getArtistRes?.isSuccess) {
             dispatch(changingLoadingStatus(false));
             setArtist(getArtistRes?.data);
         }
-        if (getArtistRes?.isLoading) {
+        if (getArtistRes?.isLoading || getArtistRes?.isFetching) {
             dispatch(changingLoadingStatus(true));
         }
         if (getArtistRes?.isError) {
@@ -81,6 +82,7 @@ export default function ArtistTable({ search }) {
         }
     }, [getArtistRes])
 
+    //search artist
     useEffect(() => {
         if (searchArtistRes?.isSuccess) {
             dispatch(changingLoadingStatus(false));
@@ -95,11 +97,6 @@ export default function ArtistTable({ search }) {
     }, [searchArtistRes])
 
     useEffect(() => {
-        getArtistReq(page);
-    }, [page])
-
-    useEffect(() => {
-        console.log(search)
         if (search) {
             searchArtistReq({ search: search, page: 1 });
         }
@@ -119,10 +116,11 @@ export default function ArtistTable({ search }) {
         }
     }
 
+    
     return (
         <>
-            <Paper sx={{ position: 'relative',width: '100%', overflow: 'hidden', m: "16px 0" }}>
-            <Loading />
+            <Paper sx={{ position: 'relative', width: '100%', overflow: 'hidden', m: "16px 0" }}>
+                <Loading />
                 <TableContainer sx={{ maxHeight: 600, minHeight: 600 }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
@@ -150,19 +148,24 @@ export default function ArtistTable({ search }) {
                                 .map((row) => {
                                     return (
                                         <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                            {columns.map((column) => {
+                                            {columns.map((column, index) => {
                                                 const value = row[column.id];
                                                 return (
-                                                    <TableCell key={column.id} align={column.align}>
-                                                        {column.format && typeof value === 'number'
-                                                            ? column.format(value)
-                                                            : value}
-                                                    </TableCell>
+                                                    <>
+                                                        <TableCell key={column.id} align={column.align}>
+                                                            {column.format && typeof value === 'number'
+                                                                ? column.format(value)
+                                                                : value}
+                                                        </TableCell>
+                                                    </>
                                                 );
                                             })}
-                                            <TableCell align='right'>
-                                                <BsThreeDotsVertical />
+
+                                            <TableCell align='right' id="menu" >
+                                                <CustomMenu id={row._id} />
                                             </TableCell>
+
+
                                         </TableRow>
                                     );
                                 })}

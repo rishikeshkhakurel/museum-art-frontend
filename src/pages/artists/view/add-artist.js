@@ -25,7 +25,9 @@ height: 100%;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             grid-gap: 0 32px;
-
+            button{
+                cursor: pointer;
+            }
         }
     }
 `
