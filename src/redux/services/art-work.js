@@ -27,10 +27,21 @@ export const ArtWorkApis = createApi({
         },
       }),
     }),
+    deleteArtWork: builder.mutation({
+      query: (id) => ({
+        url: `/artwork/${id}`,
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ["delete-artwork"],
+    }),
   }),
 });
 
 export const {
   useGetArtWorkQuery,
   useSearchArtWorkMutation,
+  useDeleteArtWorkMutation
 } = ArtWorkApis;

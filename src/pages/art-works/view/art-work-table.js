@@ -10,9 +10,9 @@ import Button from '../../../component/button';
 import { useDispatch } from 'react-redux';
 import { changingLoadingStatus } from '../../../redux/slices/loading';
 import { useGetArtWorkQuery, useSearchArtWorkMutation } from '../../../redux/services/art-work';
-import CustomMenu from '../../artists/view/customMenu';
 import { Tooltip, Typography } from '@mui/material';
 import Loading from '../../../component/Loading';
+import CustomMenu from './custom-art-work-menu';
 
 const columns = [
     { id: 'Title', label: 'Title', minWidth: 170, maxWidth: 200, },

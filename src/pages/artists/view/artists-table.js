@@ -11,7 +11,7 @@ import { useGetArtistQuery, useSearchArtistMutation } from '../../../redux/servi
 import { useDispatch } from 'react-redux';
 import { changingLoadingStatus } from '../../../redux/slices/loading';
 import Loading from '../../../component/Loading';
-import CustomMenu from './customMenu';
+import CustomMenu from './custom-artist-menu';
 
 const columns = [
     { id: 'ConstituentID', label: 'Constituent ID', minWidth: 170 },
