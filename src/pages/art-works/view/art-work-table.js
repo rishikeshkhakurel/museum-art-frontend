@@ -130,10 +130,10 @@ export default function ArtWorkTable({ search }) {
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow >
-                                {columns.map((column) => (
+                                {columns.map((column, index) => (
                                     <TableCell
                                         sx={{ fontWeight: '600' }}
-                                        key={column.id}
+                                        key={index}
                                         align={column.align}
                                     >
                                         {column.label}
@@ -143,9 +143,9 @@ export default function ArtWorkTable({ search }) {
                         </TableHead>
                         <TableBody>
                             {chooseArtistData()
-                                .map((row) => {
+                                .map((row, index) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                             <TableCell sx={{ textOverflow: 'ellipsis', maxWidth: "200px", overflow: 'hidden' }} align='left'>
 
                                                 <Tooltip title={row.Title} placement="top-start">

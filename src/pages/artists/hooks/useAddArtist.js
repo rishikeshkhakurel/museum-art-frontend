@@ -85,7 +85,6 @@ const useAddArtist = () => {
         if (getArtist?.isSuccess) {
             dispatch(changingLoadingStatus(false));
             const data = getArtist?.data;
-            console.log(data)
             formik.setValues({
                 '_id': data?._id,
                 'constituentID': data?.ConstituentID,
