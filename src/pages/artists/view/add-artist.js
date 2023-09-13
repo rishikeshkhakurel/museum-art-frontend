@@ -38,7 +38,7 @@ function AddArtist() {
     return (
         <AddArtistStyled>
             {addArtistRes?.isSuccess && <AlertBox AlertMessage="Artist Added Successfully" />}
-            {(addArtistRes?.isError || editArtistRes) && <AlertBox isError AlertMessage="Something Went Wrong" />}
+            {(addArtistRes?.isError || editArtistRes?.isError) && <AlertBox isError AlertMessage="Something Went Wrong" />}
             {editArtistRes?.isSuccess && <AlertBox AlertMessage="Artist Edited Successfully" />}
             <h1>{edit ? 'Edit' : 'Add'} Artist</h1>
             <div id='add-artist'>
